@@ -4,7 +4,7 @@ use App\Http\Controllers\EscuelaController;
 use App\Http\Controllers\FacultadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AlumnoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 // });
  Route::apiResource('facultad', FacultadController::class);
  Route::apiResource('escuela', EscuelaController::class);
+ Route::apiResource('alumno', AlumnoController::class);
