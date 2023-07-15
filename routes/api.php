@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\EscuelaController;
 use App\Http\Controllers\FacultadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
  Route::apiResource('facultad', FacultadController::class);
+ Route::apiResource('escuela', EscuelaController::class);
