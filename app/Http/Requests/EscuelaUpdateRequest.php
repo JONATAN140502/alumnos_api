@@ -13,7 +13,7 @@ class EscuelaUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class EscuelaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "nombre" => "required",
+            "codigo" => "required"
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            "nombre" => "nombre", 
+            "codigo" => "codigo"
         ];
     }
 }

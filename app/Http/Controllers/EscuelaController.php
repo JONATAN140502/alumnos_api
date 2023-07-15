@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Escuela;
+use App\Http\Requests\EscuelaSaveRequest;
+use App\Http\Requests\EscuelaUpdateRequest;
+use App\Http\Resources\EscuelaResource;
 use Illuminate\Http\Request;
 
 class EscuelaController extends Controller
@@ -14,7 +17,10 @@ class EscuelaController extends Controller
      */
     public function index()
     {
-        //
+        $result = Escuela::where('state', 'ACTIVE')
+        // ->with('getEscuelas')
+        ->get();
+        return EscuelaResource::collection( $result);
     }
 
     /**
@@ -33,9 +39,11 @@ class EscuelaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EscuelaSaveRequest $request)
     {
-        //
+        $escuela = Escuela::create($request->all());
+
+        //return new EscuelaResource($escuela);
     }
 
     /**
@@ -46,7 +54,7 @@ class EscuelaController extends Controller
      */
     public function show(Escuela $escuela)
     {
-        //
+        return new EscuelaResource($escuela);
     }
 
     /**
@@ -67,9 +75,11 @@ class EscuelaController extends Controller
      * @param  \App\Models\Escuela  $escuela
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Escuela $escuela)
+    public function update(EscuelaUpdateRequest $request, Escuela $escuela)
     {
-        //
+        $escuela->update($request->all());
+
+        return new EscuelaResource($escuela);
     }
 
     /**
@@ -80,6 +90,9 @@ class EscuelaController extends Controller
      */
     public function destroy(Escuela $escuela)
     {
-        //
+        if($escuela) 
+        $escuela->update(['state' => 'DELETE']);
+
+        return response()->noContent();
     }
 }
