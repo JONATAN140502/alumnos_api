@@ -74,6 +74,6 @@ class FacultadController extends Controller
         if($facultad) 
         $facultad->update(['estado' => 'DELETE']);
 
-        return response();
+        return response()->noContent();
     }
 }
