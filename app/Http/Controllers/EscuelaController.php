@@ -43,7 +43,7 @@ class EscuelaController extends Controller
     {
         $escuela = Escuela::create($request->all());
 
-        //return new EscuelaResource($escuela);
+        return new EscuelaResource($escuela);
     }
 
     /**
